@@ -5,8 +5,19 @@
 //
 
 export const hey = (message) => {
-  if (message.includes("!")){
+  let i = 0
+  if (checkUpper(message) && message.includes('?') ){
+    return 'Calm down, I know what I\'m doing!'
+  } else if (checkUpper(message)){
     return 'Whoa, chill out!'
+  }
+  else if (message.includes("?")){
+    return 'Sure.'
   }
   return 'Whatever.'
 };
+
+
+function checkUpper(message){
+  return message === message.toUpperCase()
+}

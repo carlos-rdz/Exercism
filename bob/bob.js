@@ -1,23 +1,50 @@
-/* eslint-disable no-unused-vars */
-//
-// This is only a SKELETON file for the 'Bob' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+const responseObj = {
+  question : 'Sure.',
+  yell: 'Whoa, chill out!',
+  yellQuestion : "Calm down, I know what I'm doing!",
+  address: 'Fine. Be that way!',
+  catch: 'Whatever.'
+}
 
-export const hey = (message) => {
-  let i = 0
-  if (checkUpper(message) && message.includes('?') ){
-    return 'Calm down, I know what I\'m doing!'
-  } else if (checkUpper(message)){
-    return 'Whoa, chill out!'
+export function hey(message){
+  if (isUpperCase(message) && message.includes('?')){
+    return responseObj.yellQuestion
   }
-  else if (message.includes("?")){
-    return 'Sure.'
+  else if (isUpperCase(message))
+    return responseObj.yell
+  else if (isQuestion(message)){
+    return responseObj.question
   }
-  return 'Whatever.'
-};
+  else if (stripString(message) == ""){
+    return responseObj.address
+  }
+  else {
+    return responseObj.catch
+  }
 
+}
 
-function checkUpper(message){
-  return message === message.toUpperCase()
+function isQuestion(str){
+  let spaceless = str.replace(/\s/g,'');
+  let arrayOfCharacters = spaceless.split('')
+  if (arrayOfCharacters.slice(-1)[0] == '?' ){
+    return true
+  }
+}
+
+function stripString(str){
+  let newStr = str.replace(/[.,\/#?!$%\^&\*;:{}=\-_`~()]/g,"")
+  let spaceless = newStr.replace(/\s/g,'');
+  return spaceless
+}
+
+function isUpperCase(str) {
+    console.log(stripString(str))
+    if (isNaN(stripString(str))){
+      return str === str.toUpperCase();
+    }
+    else {
+      return false
+    }
+    
 }

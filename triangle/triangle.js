@@ -1,5 +1,4 @@
 
-
 export class Triangle{
     constructor(side1,side2,side3) {
         this.side1 = side1;
@@ -7,6 +6,7 @@ export class Triangle{
         this.side3 = side3;
       }
 
+    //   
       kind() {
         let sides = [this.side1,this.side2,this.side3].sort((a, b) => a - b)
         if (this.side1 <= 0 || this.side2 <= 0 || this.side3 <= 0 ){

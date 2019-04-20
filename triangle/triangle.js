@@ -4,22 +4,48 @@ export class Triangle{
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
+        this.sides = [this.side1, this.side2, this.side3]
       }
 
-    //   
-      kind() {
-        let sides = [this.side1,this.side2,this.side3].sort((a, b) => a - b)
-        if (this.side1 <= 0 || this.side2 <= 0 || this.side3 <= 0 ){
-            throw("sides cannot be 0")
-        } else if (sides[0] + sides[1] < sides[2] ){
-            throw("violates triangle inequality")
-        } else if(this.side1 === this.side2 && this.side2 === this.side3){
-            return "equilateral"
-        } else if (this.side1 !== this.side2 && this.side2 !== this.side3 && this.side1 !== this.side3){
-            return "scalene"  
+
+    kind() {
+        this.errorCheck();
+
+        if (this.side1 == this.side2 && this.side2 ==this.side3){
+            return 'equilateral'
+        } else if (this.side1 == this.side2 || this.side2 == this.side3 || this.side1 == this.side3) {
+            return 'isosceles'
         } else {
-            return "isosceles"
+            return 'scalene'
         }
-      } 
+        }
+
+    errorCheck(){
+        this.checkZero();
+        this.checkNegative();
+        this.checkInequality();
+    }
+    
+    checkZero(){
+        if (this.sides.includes(0)) {
+            throw "not a triangle"
+        }
+    }
+
+    checkNegative(){
+        if (this.sides.some(v => v < 0)){
+            throw "not a triangle"
+        }
+    }
+
+    checkInequality(){
+        let sortedSides = this.sides.sort(function(a, b){return a-b})
+        console.log(sortedSides)
+        if ((sortedSides[0] + sortedSides[1]) < sortedSides[2] ){
+            throw "not a triangle"
+        }
+    }
 
 }
+
+
